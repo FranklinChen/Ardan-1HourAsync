@@ -1,8 +1,8 @@
 use rand::Rng;
 
 async fn sleep_random() {
-    let mut rng = rand::thread_rng();
-    let secs = rng.gen_range(0..5);
+    let mut rng = rand::rng();
+    let secs = rng.random_range(0..5);
     tokio::time::sleep(tokio::time::Duration::from_secs(secs)).await;
 }
 
