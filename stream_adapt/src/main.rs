@@ -1,6 +1,6 @@
 use pin_project_lite::pin_project;
-use tokio::io::BufReader;
 use tokio::io::AsyncBufReadExt;
+use tokio::io::BufReader;
 use tokio_stream::StreamExt;
 
 pin_project! {
@@ -19,14 +19,14 @@ impl ToUpper {
 impl tokio_stream::Stream for ToUpper {
     type Item = std::io::Result<String>;
 
-    fn poll_next(self: std::pin::Pin<&mut Self>, cx: &mut std::task::Context<'_>) -> std::task::Poll<Option<Self::Item>> {
-        self.project().stream.poll_next(cx).map(|opt| {
-            opt.map(|res| {
-                res.map(|line| {
-                    line.to_uppercase() + "\n"
-                })
-            })
-        })
+    fn poll_next(
+        self: std::pin::Pin<&mut Self>,
+        cx: &mut std::task::Context<'_>,
+    ) -> std::task::Poll<Option<Self::Item>> {
+        self.project()
+            .stream
+            .poll_next(cx)
+            .map(|opt| opt.map(|res| res.map(|line| line.to_uppercase() + "\n")))
     }
 }
 

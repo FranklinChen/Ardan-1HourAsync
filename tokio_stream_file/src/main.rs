@@ -1,7 +1,7 @@
 async fn async_line_count(n: u32, filename: String) -> anyhow::Result<()> {
+    use tokio::fs::File;
     use tokio::io::AsyncBufReadExt;
     use tokio::io::BufReader;
-    use tokio::fs::File;
 
     println!("Reading {filename}...");
 
@@ -14,7 +14,7 @@ async fn async_line_count(n: u32, filename: String) -> anyhow::Result<()> {
     Ok(())
 }
 
-#[tokio::main(flavor="current_thread")]
+#[tokio::main(flavor = "current_thread")]
 async fn main() {
     let _ = tokio::join!(
         tokio::spawn(async_line_count(1, "warandpeace.txt".to_string())),

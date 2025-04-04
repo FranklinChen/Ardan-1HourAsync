@@ -14,8 +14,5 @@ async fn tocker() {
 
 #[tokio::main]
 async fn main() {
-    let _ = tokio::join!(
-        tokio::spawn(ticker()),
-        tokio::spawn(tocker()),
-    );
+    let _ = tokio::join!(tokio::spawn(ticker()), tokio::spawn(tocker()),);
 }

@@ -11,9 +11,8 @@ async fn sender(tx: tokio::sync::mpsc::Sender<Message>, n: u32) {
 
 async fn receiver(
     mut rx: tokio::sync::mpsc::Receiver<Message>,
-    mut rx2: tokio::sync::mpsc::Receiver<Message>
-) 
-{
+    mut rx2: tokio::sync::mpsc::Receiver<Message>,
+) {
     loop {
         tokio::select! {
             Some(Message::Tick(n)) = rx.recv() => println!("Received message {n}"),

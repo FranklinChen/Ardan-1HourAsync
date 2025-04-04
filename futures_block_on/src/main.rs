@@ -6,5 +6,5 @@ async fn do_work() {
 
 fn main() {
     println!("Hello, sync world");
-	block_on(do_work());
+    block_on(do_work());
 }
